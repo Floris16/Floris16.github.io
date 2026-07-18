@@ -1,6 +1,6 @@
 /* CONTENUTI MODIFICABILI — aggiorna qui testi, link, clienti e disponibilità. */
 window.PORTFOLIO = {
-  person: { email: "gabry.floris00@gmail.com", linkedin: "https://www.linkedin.com/in/gabriele-floris-84b3b71b7/", cv: "assets/documents/Gabriele-Floris-CV.pdf", available: true,
+  person: { email: "gabry.floris00@gmail.com", linkedin: "https://www.linkedin.com/in/gabriele-floris-84b3b71b7/", cv: "assets/documents/Gabriele-Floris-CV.pdf", photo: "assets/images/gabriele-floris.webp", available: true,
     hero: "Lavoro nel punto in cui esigenze di business, progettazione e realizzazione tecnica devono diventare una scelta condivisa. Ricostruisco il problema, definisco la soluzione, coordino chi la realizza e resto vicino al codice quando serve.",
     profile: "Non tratto il requisito come un punto di partenza già completo. Cerco ciò che manca: il processo reale degli utenti, i sistemi che si scambiano dati, i vincoli operativi e i casi che possono rompere il flusso. Da lì costruisco una soluzione che cliente, sviluppatori e partner possano leggere nello stesso modo." },
   method: [

@@ -7,6 +7,7 @@
 
   d.querySelector("#hero-copy").textContent = c.person.hero;
   d.querySelector("#profile-copy").textContent = c.person.profile;
+  d.querySelector("#profile-photo").src = c.person.photo;
   d.querySelector("#hero-links").innerHTML = externalLink("LinkedIn", c.person.linkedin) + externalLink("E-mail", "mailto:" + c.person.email);
   d.querySelectorAll(".cv-link").forEach(link => link.href = c.person.cv);
 
