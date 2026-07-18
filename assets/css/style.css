@@ -203,7 +203,7 @@ footer { display: flex; justify-content: space-between; margin-top: 5rem; paddin
   .identity-name, .theme-toggle { display: none; }
   .masthead nav { top: 69px; }
   .hero { min-height: auto; display: block; padding-top: 5rem; }
-  .hero h1 { font-size: clamp(3.25rem, 16vw, 5.4rem); line-height: .88; }
+  .hero h1 { font-size: clamp(2.65rem, 11.5vw, 3.6rem); line-height: .88; }
   .hero-copy { margin-top: 2rem; }
   .hero-system { margin-top: 4rem; }
   .hero-aside { margin-top: 4rem; }
@@ -236,7 +236,7 @@ footer { display: flex; justify-content: space-between; margin-top: 5rem; paddin
   .ai-note { display: block; padding: 1.5rem; }
   .ai-note h3 { margin: 2rem 0 1rem; }
   .certs article { min-height: 170px; }
-  .contact-section h2 { font-size: clamp(4.5rem, 23vw, 8rem); }
+  .contact-section h2 { font-size: clamp(2.8rem, 12vw, 5.5rem); }
   .contact-meta { grid-template-columns: 1fr; }
   .contact-meta p { justify-self: start; text-align: left; }
 }
