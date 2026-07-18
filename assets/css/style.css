@@ -172,7 +172,10 @@ h3 { font-size: 1.2rem; }
   .project-card { min-height: 350px; }
   .path-row { grid-template-columns: 1fr; gap: .5rem; }
   .ai-card { grid-template-columns: 1fr; }
-  .case-hero { grid-template-columns: 1fr; gap: .5rem; }
+  .case-hero { grid-template-columns: minmax(0, 1fr); gap: .5rem; }
+  .case-hero > div { min-width: 0; }
+  .case-hero h1 { font-size: clamp(2.2rem, 10.5vw, 3rem); }
+  .portrait-card .track-line { right: 0; }
   .case-content { grid-template-columns: 1fr; }
   .case-nav { position: static; display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
   .footer-top { grid-template-columns: 1fr; }
