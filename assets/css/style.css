@@ -77,7 +77,7 @@ h3 { font-size: 1.2rem; }
 .portrait-card { position: relative; margin: 0; padding: .6rem; background: var(--card); border: 1px solid var(--line); border-radius: 28px 28px 8px 28px; box-shadow: 0 18px 50px rgba(30,31,35,.1); transform: rotate(-1deg); }
 .portrait-card::before { content: ""; position: absolute; z-index: 2; top: -11px; right: 24px; width: 76px; height: 24px; border: 4px solid var(--bg); background: repeating-conic-gradient(var(--ink) 0 25%, var(--bg) 0 50%) 0 / 16px 16px; transform: rotate(3deg); }
 .portrait-card::after { content: ""; position: absolute; z-index: 2; right: -7px; bottom: 54px; width: 7px; height: 92px; border-radius: 4px; background: linear-gradient(var(--accent) 0 42%, var(--ink) 42% 56%, var(--accent) 56%); }
-.portrait-card img { width: 100%; aspect-ratio: 1 / 1.03; object-fit: cover; object-position: center 47%; border-radius: 21px 21px 5px 21px; filter: saturate(.9) contrast(1.03); }
+.portrait-card img { width: 100%; height: clamp(330px, 34vw, 440px); object-fit: cover; object-position: center 47%; border-radius: 21px 21px 5px 21px; filter: saturate(.9) contrast(1.03); }
 .portrait-card figcaption { display: flex; justify-content: space-between; padding: .75rem .45rem .2rem; color: var(--muted); font-size: .66rem; }
 .portrait-card .track-line { position: absolute; z-index: 3; right: -52px; bottom: -48px; width: 180px; height: 145px; color: var(--accent); transform: rotate(-8deg); }
 .track-line path { fill: none; stroke: currentColor; stroke-width: 2.8; stroke-linecap: round; stroke-dasharray: 7 8; }
@@ -206,6 +206,7 @@ h3 { font-size: 1.2rem; }
   .case-hero > div { min-width: 0; }
   .case-hero h1 { font-size: clamp(2.2rem, 10.5vw, 3rem); }
   .portrait-card .track-line { right: 0; }
+  .portrait-card img { height: min(108vw, 430px); }
   .case-content { grid-template-columns: 1fr; }
   .case-nav { position: static; display: flex; flex-wrap: wrap; gap: .5rem 1rem; }
   .footer-top { grid-template-columns: 1fr; }
