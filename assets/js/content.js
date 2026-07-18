@@ -1,23 +1,90 @@
-/* CONTENUTI MODIFICABILI — aggiorna qui testi, link, clienti e disponibilità. */
+/* Contenuti del portfolio. Qui si aggiornano profilo, progetti, esperienza e link. */
 window.PORTFOLIO = {
-  person: { email: "gabry.floris00@gmail.com", linkedin: "https://www.linkedin.com/in/gabriele-floris-84b3b71b7/", cv: "assets/documents/Gabriele-Floris-CV.pdf", photo: "assets/images/gabriele-floris.webp", available: true,
-    hero: "Lavoro nel punto in cui esigenze di business, progettazione e realizzazione tecnica devono diventare una scelta condivisa. Ricostruisco il problema, definisco la soluzione, coordino chi la realizza e resto vicino al codice quando serve.",
-    profile: "Non tratto il requisito come un punto di partenza già completo. Cerco ciò che manca: il processo reale degli utenti, i sistemi che si scambiano dati, i vincoli operativi e i casi che possono rompere il flusso. Da lì costruisco una soluzione che cliente, sviluppatori e partner possano leggere nello stesso modo." },
-  method: [
-    ["01","Comprendere","Ricostruisco il processo end-to-end, ascolto gli utenti e separo i sintomi dalle cause. Sistemi e vincoli entrano nella mappa fin dall’inizio."],
-    ["02","Progettare","Definisco dati, automazioni, integrazioni e confini di responsabilità. Rendo visibili trade-off e strategia di implementazione."],
-    ["03","Coordinare","Traduco il disegno in attività stimabili e verificabili, chiarendo dipendenze, ownership e criteri di completamento."],
-    ["04","Consegnare","Seguo sviluppo, test, rilascio e documentazione. Le criticità restano governate fino all’adozione, non solo fino al deploy."]],
-  cases: [
-    {id:"crm", title:"Ridisegnare un ecosistema CRM integrato", sector:"Automotive & digital platform", clientName:"", showClientName:false, role:"Solution design · Technical coordination", intro:"Un portale clienti, un PIM, identity, Marketing Cloud e Salesforce: il lavoro è stato riportare confini e scambi a un modello condiviso, evolvendo il legacy senza interrompere i processi attivi.", tech:["Salesforce","Apex","REST API","OpenAPI/YAML","Marketing Cloud","PIM"], skills:["System thinking","Integration design","Data modelling"], challenge:"L’ecosistema supportava registrazione prodotti, autenticità, motociclette, wishlist, assistenza e privacy. Entità legacy, identificativi con suffissi e flussi API non uniformi rendevano fragile l’evoluzione verso un modello prodotto molto più ricco.", contribution:"Ho ricostruito i flussi end-to-end con cliente, integratori web, sviluppatori Salesforce e risorse Marketing Cloud; chiarito la responsabilità dei sistemi, formalizzato requisiti e casi limite, coordinato attività, test e rilasci, e mantenuto la specifica d’integrazione allineata.", solution:"Un modello dati evoluto e API documentate da una specifica OpenAPI condivisa, con migrazione progressiva, gestione esplicita degli errori e ambienti di test dedicati.", decisions:["Rimozione progressiva dei suffissi legacy tramite batch dedicati","Separazione tra wishlist semplici e configurazioni complete","Trattamento coerente degli utenti anonimi e validazione dei codici","Response API standard con esito ed errore","Compatibilità con i flussi esistenti durante la transizione"], result:"Il nuovo impianto offre dati più coerenti, integrazioni più leggibili per i partner e un percorso controllato fuori dal legacy. È una base più solida per il portale e per le successive attività marketing."},
-    {id:"docs", title:"Superare i limiti della generazione documentale standard", sector:"Enterprise commercial processes", clientName:"", showClientName:false, role:"Solution design · Delivery coordination", intro:"La composizione di PDF voluminosi è stata spostata fuori dal percorso sincrono, conservando per gli utenti lo stesso punto di ingresso in Salesforce e rendendo ogni richiesta tracciabile.", tech:["Salesforce","Apex","REST API","Salesforce Files","Async processing"], skills:["Architectural trade-off","UX","Estimation"], challenge:"Documenti con molte sezioni dinamiche superavano i limiti di una generazione diretta affidabile. Il processo doveva evitare timeout, comporre il file, pubblicarlo sul record corretto e informare l’utente.", contribution:"Ho analizzato i limiti, confrontato alternative, disegnato il flusso e lo stato delle richieste, stimato l’intervento e coordinato sviluppo, pubblicazione del file e notifiche, curando la continuità dell’esperienza utente.", solution:"Salesforce prepara le sezioni e invia una richiesta asincrona a un servizio di composizione. Al ritorno associa il documento al record, aggiorna lo stato e invia una platform notification.", decisions:["Mantenere il comando già conosciuto dagli utenti","Separare preparazione e composizione pesante","Modellare ogni richiesta con stato persistente","Pubblicare il risultato come Salesforce File"], result:"Il processo non blocca l’utente, rende visibile l’avanzamento e crea un’architettura riutilizzabile per documenti e formati futuri."},
-    {id:"lead", title:"Dal lead duplicato a una visione coerente del cliente", sector:"Marketing & multichannel acquisition", clientName:"", showClientName:false, role:"CRM data strategy · Phased delivery", intro:"Identità della persona e contesto della campagna sono stati separati: un solo lead, mentre ogni interazione conserva i propri dati e la propria storia sul Campaign Member.", tech:["Sales Cloud","Campaign Member","Account Engagement","Apex","Flow"], skills:["Data governance","Process analysis","Phased delivery"], challenge:"Form, campagne ed eventi generavano record duplicati e una storia frammentata, mentre aggiornamenti da marketing automation rischiavano di sovrascrivere informazioni utili.", contribution:"Ho contribuito alla strategia funzionale e tecnica, chiarito il modello di riconciliazione e suddiviso il lavoro tra intervento immediato, controlli e bonifica progressiva.", solution:"Un lead per persona, dati della singola interazione sul Campaign Member, aggiornamenti controllati da Account Engagement e riconciliazione via e-mail anche rispetto ad anagrafiche esistenti.", decisions:["Separare identità e contesto di campagna","Preservare la storia prima della deduplica","Introdurre la bonifica per fasi","Controllare esplicitamente gli aggiornamenti esterni"], result:"La base dati acquista coerenza e tracciabilità, riducendo il rischio di nuove duplicazioni e preparando una bonifica governata dello storico."},
-    {id:"contract", title:"Orchestrare un contratto tra utenti, firma e sistemi esterni", sector:"Digital contracting", clientName:"", showClientName:false, role:"Process modelling · Integration design", intro:"Un contratto con più attori e sistemi è diventato una macchina a stati esplicita, con Salesforce come orchestratore di firme, documenti, permessi e anomalie.", tech:["Salesforce","Flow","Apex","DocuSign","REST API","Files"], skills:["Orchestration","Access control","Stakeholder alignment"], challenge:"Agente, amministratore e back office intervengono in momenti diversi. Firma, apertura della pratica, allegati e consegna devono rispettare prerequisiti e lasciare una traccia completa.", contribution:"Ho modellato attori, responsabilità, transizioni, errori e dati scambiati; lavorato sulla configurazione DocuSign in sandbox e sulla selezione dinamica dei firmatari dai record Salesforce.", solution:"Il flusso attraversa bozza, generazione, firma, invio esterno, creazione posizione, caricamento documenti e consegna. Ogni transizione è controllata e gli errori restano azionabili.", decisions:["Salesforce come orchestratore centrale","Stati e prerequisiti espliciti","Firmatari derivati dinamicamente dai dati","Permessi coerenti con ruolo e fase"], result:"Il processo diventa leggibile e governabile: diminuiscono le ambiguità tra attori e firma, attività residue ed errori sono integrati nel contesto CRM."},
+  person: {
+    name: "Gabriele Floris",
+    role: "Senior Salesforce Solution Consultant",
+    location: "Reggio Emilia, Italia",
+    email: "gabry.floris00@gmail.com",
+    linkedin: "https://www.linkedin.com/in/gabriele-floris-84b3b71b7/",
+    cv: "assets/documents/Gabriele-Floris-CV.pdf",
+    photo: "assets/images/gabriele-floris.webp",
+    intro: "Lavoro su progetti Salesforce nel punto in cui processo, dati e implementazione devono restare allineati. Negli ultimi anni il mio ruolo si è spostato dallo sviluppo alla progettazione tecnico-funzionale e al coordinamento della delivery.",
+    about: "Mi interessa capire come funzionano davvero le cose: cosa fa un utente, dove nasce un dato, quale sistema ne è responsabile e cosa succede quando il percorso previsto si interrompe. Da qui parto per costruire soluzioni leggibili, prima ancora che tecnicamente corrette."
+  },
+  projects: [
+    {
+      id: "crm",
+      number: "01",
+      icon: "route",
+      title: "Evoluzione di un ecosistema CRM integrato",
+      context: "Piattaforma digitale nel settore accessori moto",
+      role: "Solution design e coordinamento tecnico",
+      summary: "Salesforce era al centro di un ecosistema che comprendeva portale, identity, PIM, Marketing Cloud e partner esterni. Il lavoro è stato ricostruire i confini tra i sistemi e accompagnare l’evoluzione del modello dati senza interrompere i processi esistenti.",
+      startingPoint: "Il modello precedente conteneva entità legacy, identificativi costruiti nel tempo e flussi API non sempre coerenti. Nel frattempo il nuovo portale richiedeva un modello prodotto più ricco, con varianti, accessori, compatibilità e immagini provenienti dal PIM.",
+      work: "Ho ricostruito i flussi end-to-end insieme alle persone coinvolte, chiarito la responsabilità dei sistemi, formalizzato casi limite e dipendenze, e coordinato attività, test e rilasci. La specifica OpenAPI è diventata il riferimento condiviso tra documentazione e implementazione.",
+      decisions: ["Migrazione progressiva degli identificativi legacy con batch dedicati", "Separazione tra wishlist semplici e configurazioni complete", "Gestione esplicita di utenti anonimi, validazioni ed errori API", "Ambienti di test dedicati e compatibilità durante la transizione"],
+      outcome: "Il nuovo modello è più coerente con il prodotto reale e le integrazioni sono più facili da leggere e manutenere. La migrazione ha seguito un percorso controllato, riducendo gradualmente le dipendenze dalla struttura precedente.",
+      tech: ["Salesforce", "Apex", "Flow", "REST API", "OpenAPI / YAML", "Marketing Cloud", "PIM integration", "Batch processing"]
+    },
+    {
+      id: "documenti",
+      number: "02",
+      icon: "layers",
+      title: "Generazione asincrona di documenti complessi",
+      context: "Processi commerciali enterprise",
+      role: "Solution design e delivery coordination",
+      summary: "La generazione sincrona non era affidabile per PDF molto estesi e ricchi di sezioni dinamiche. Abbiamo mantenuto il punto di ingresso già conosciuto dagli utenti, spostando la composizione pesante su un processo asincrono e tracciabile.",
+      startingPoint: "Il processo doveva generare sezioni diverse, gestire documenti voluminosi, evitare timeout e pubblicare il risultato sul record corretto senza lasciare l’utente in attesa.",
+      work: "Ho analizzato i limiti tecnici, confrontato opzioni alternative, definito il flusso e lo stato delle richieste, stimato l’intervento e coordinato sviluppo, pubblicazione del file e notifiche.",
+      decisions: ["Mantenere il comando già noto agli utenti", "Separare preparazione e composizione del documento", "Persistenza dello stato per rendere ogni richiesta tracciabile", "Pubblicazione del risultato tramite Salesforce Files"],
+      outcome: "La generazione non blocca più la sessione dell’utente e il processo rende visibile il proprio avanzamento. La stessa architettura può essere riutilizzata per altri formati o composizioni.",
+      tech: ["Salesforce", "Apex", "Visualforce", "Asynchronous processing", "REST API", "Salesforce Files", "Platform notifications"]
+    },
+    {
+      id: "lead",
+      number: "03",
+      icon: "nodes",
+      title: "Un lead unico, senza perdere il contesto",
+      context: "Marketing e acquisizione multicanale",
+      role: "CRM data strategy e phased delivery",
+      summary: "Form, campagne ed eventi producevano duplicati e una storia frammentata. La soluzione separa l’identità della persona dal contesto della singola interazione, conservato sul Campaign Member.",
+      startingPoint: "Ogni nuova compilazione poteva creare un lead. Era difficile ricostruire il percorso del contatto e gli aggiornamenti da marketing automation rischiavano di sovrascrivere informazioni utili.",
+      work: "Ho contribuito alla strategia funzionale e tecnica, chiarito il modello di riconciliazione e diviso il lavoro in fasi: controllo dei nuovi ingressi, gestione degli aggiornamenti e bonifica progressiva dello storico.",
+      decisions: ["Un lead per persona e dati di interazione sul Campaign Member", "Riconciliazione tramite e-mail e verifica di anagrafiche esistenti", "Controllo degli aggiornamenti da Account Engagement", "Bonifica progressiva invece di una migrazione unica"],
+      outcome: "Identità e storia delle campagne restano distinte ma collegate. La base dati è più coerente e predisposta per una bonifica governata dei record già presenti.",
+      tech: ["Sales Cloud", "Campaign Member", "Account Engagement", "Apex", "Flow", "Matching rules", "Data quality"]
+    },
+    {
+      id: "contratti",
+      number: "04",
+      icon: "flow",
+      title: "Contrattualizzazione digitale orchestrata da Salesforce",
+      context: "Contratti e pratiche con più attori",
+      role: "Process modelling e integration design",
+      summary: "Agente, amministratore e back office intervengono in fasi diverse, insieme a DocuSign e a una piattaforma esterna. Il processo è stato modellato come una macchina a stati, con Salesforce nel ruolo di orchestratore.",
+      startingPoint: "Firma, apertura della pratica, caricamento dei documenti e consegna dovevano rispettare una sequenza precisa, con permessi diversi e una gestione chiara delle anomalie.",
+      work: "Ho modellato attori, responsabilità, transizioni, prerequisiti ed errori. Ho inoltre lavorato sulla configurazione DocuSign in sandbox e sulla definizione dinamica dei firmatari a partire dai record Salesforce.",
+      decisions: ["Stati e prerequisiti resi espliciti", "Firmatari derivati dinamicamente dai dati CRM", "Permessi coerenti con ruolo e fase del processo", "Errori conservati come attività azionabili"],
+      outcome: "Il percorso del contratto è più leggibile per chi lo utilizza e per chi lo mantiene. Firma, documenti, sistemi esterni e attività residue restano nello stesso contesto operativo.",
+      tech: ["Salesforce", "Flow", "Apex", "DocuSign", "REST API", "File management", "Permission model"]
+    }
   ],
-  experience:[
-    {date:"Apr 2026 — oggi", company:"Polo Digitale", role:"Senior Salesforce Solution Consultant", text:"Ownership tecnico-funzionale su più iniziative: dal confronto con clienti e partner al disegno, stima e piano di delivery. Coordino attività e revisioni, resto operativo sulle scelte più delicate e uso l’AI, con verifica, per accelerare analisi, documentazione e sviluppo."},
-    {date:"Giu 2025 — Mar 2026", company:"Polo Digitale", role:"Salesforce Developer", text:"Sviluppo con Apex, Flow, LWC, Aura e integrazioni. Il perimetro si estende progressivamente dalla realizzazione alla definizione delle scelte, alle stime e al confronto diretto con il cliente."},
-    {date:"Apr 2023 — Mag 2025", company:"Accenture", role:"Salesforce Developer", text:"Esperienza Salesforce in programmi enterprise, con processi strutturati di test e rilascio. Collaborazione quotidiana con figure funzionali, tecniche e di coordinamento in team multidisciplinari."}],
-  skills:{"Solution design":["Salesforce solution design","Process modelling","Data modelling","Integration design","Architectural trade-off","Requirements engineering"],"Salesforce engineering":["Apex","Flow","Lightning Web Components","Aura","Visualforce","SOQL","Administration","Sales Cloud","Experience Cloud","Account Engagement","Marketing Cloud integrations"],"Delivery":["Effort estimation","Release planning","Testing coordination","Technical documentation","Stakeholder management","Mentoring","Task coordination"],"Tools & ways of working":["Git","Azure DevOps","Jira","OpenAPI / YAML","REST API","AI-assisted analysis","VS Code","Sandbox management"]},
-  certifications:["Salesforce Certified Associate","Salesforce Certified AI Associate","Salesforce Certified Platform Developer I"]
+  method: [
+    ["01", "Capire", "Ricostruisco il processo reale, i sistemi coinvolti e i casi che non seguono il percorso ideale."],
+    ["02", "Disegnare", "Definisco dati, responsabilità, automazioni e integrazioni prima di scegliere gli strumenti."],
+    ["03", "Organizzare", "Traduco il disegno in attività stimabili, dipendenze visibili e criteri di verifica."],
+    ["04", "Seguire", "Resto nel progetto durante sviluppo, test e rilascio, soprattutto quando emergono eccezioni."]
+  ],
+  experience: [
+    {date:"Apr 2026 — oggi", company:"Polo Digitale", role:"Senior Salesforce Solution Consultant", text:"Progettazione tecnico-funzionale, confronto con clienti e partner, stime e coordinamento della delivery su più iniziative. Mantengo un coinvolgimento diretto nelle decisioni tecniche e nei passaggi più delicati."},
+    {date:"Giu 2025 — Mar 2026", company:"Polo Digitale", role:"Salesforce Developer", text:"Sviluppo con Apex, Flow, LWC, Aura e integrazioni. In questa fase il mio perimetro si è allargato progressivamente verso analisi, stime e confronto diretto con il cliente."},
+    {date:"Apr 2023 — Mag 2025", company:"Accenture", role:"Salesforce Developer", text:"Primi progetti Salesforce in contesti enterprise, con processi strutturati di test e rilascio e collaborazione quotidiana con team multidisciplinari."}
+  ],
+  skills: {
+    "Solution design": ["Process modelling", "Data modelling", "Integration design", "Architectural trade-off", "Requirements engineering"],
+    "Salesforce engineering": ["Apex", "Flow", "LWC", "Aura", "Visualforce", "SOQL", "Sales Cloud", "Experience Cloud", "Account Engagement"],
+    "Delivery": ["Effort estimation", "Release planning", "Testing coordination", "Technical documentation", "Stakeholder management", "Task coordination"],
+    "Strumenti": ["Git", "Azure DevOps", "Jira", "OpenAPI / YAML", "REST API", "VS Code", "Sandbox management"]
+  },
+  certifications: ["Salesforce Certified Associate", "Salesforce Certified AI Associate", "Salesforce Certified Platform Developer I"]
 };

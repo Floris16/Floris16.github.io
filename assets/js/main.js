@@ -1,83 +1,62 @@
 (function () {
   "use strict";
   const d = document;
-  const c = window.PORTFOLIO;
+  const data = window.PORTFOLIO;
   const esc = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-  const externalLink = (label, url) => `<a href="${esc(url)}" ${url.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ""}>${esc(label)} <span>↗</span></a>`;
+  const icon = name => `<svg aria-hidden="true"><use href="assets/images/icons.svg#${esc(name)}"></use></svg>`;
 
-  d.querySelector("#hero-copy").textContent = c.person.hero;
-  d.querySelector("#profile-copy").textContent = c.person.profile;
-  d.querySelector("#profile-photo").src = c.person.photo;
-  d.querySelector("#hero-links").innerHTML = externalLink("LinkedIn", c.person.linkedin) + externalLink("E-mail", "mailto:" + c.person.email);
-  d.querySelectorAll(".cv-link").forEach(link => link.href = c.person.cv);
+  function projectCard(project) {
+    return `<a class="project-card" href="progetto-${esc(project.id)}.html">
+      <div class="project-card-top"><span>${esc(project.number)}</span>${icon(project.icon)}</div>
+      <p class="project-context">${esc(project.context)}</p>
+      <h3>${esc(project.title)}</h3>
+      <p class="project-summary">${esc(project.summary)}</p>
+      <div class="project-card-foot"><span>${esc(project.role)}</span><b aria-hidden="true">↗</b></div>
+    </a>`;
+  }
 
-  d.querySelector("#method-grid").innerHTML = c.method.map(item => `
-    <article>
-      <span class="method-number">${esc(item[0])}</span>
-      <div><h3>${esc(item[1])}</h3><p>${esc(item[2])}</p></div>
-    </article>`).join("");
+  const homeProjects = d.querySelector("#home-projects");
+  if (homeProjects) homeProjects.innerHTML = data.projects.slice(0, 3).map(projectCard).join("");
+  const projectGrid = d.querySelector("#project-grid");
+  if (projectGrid) projectGrid.innerHTML = data.projects.map(projectCard).join("");
 
-  d.querySelector("#projects-list").innerHTML = c.cases.map((project, index) => `
-    <details class="case" ${index === 0 ? "open" : ""}>
-      <summary>
-        <span class="case-number">0${index + 1}</span>
-        <span class="case-title"><small>${esc(project.sector)}</small><strong>${esc(project.title)}</strong></span>
-        <span class="case-role">${esc(project.role)}</span>
-        <span class="case-icon" aria-hidden="true"></span>
-      </summary>
-      <div class="case-body">
-        <p class="case-lead">${esc(project.intro)}</p>
-        <div class="case-columns">
-          <section><h4>La sfida</h4><p>${esc(project.challenge)}</p></section>
-          <section><h4>Il mio contributo</h4><p>${esc(project.contribution)}</p></section>
-          <section><h4>La soluzione</h4><p>${esc(project.solution)}</p></section>
-          <section><h4>Decisioni chiave</h4><ul>${project.decisions.map(item => `<li>${esc(item)}</li>`).join("")}</ul></section>
-        </div>
-        <div class="case-result"><span>Risultato</span><p>${esc(project.result)}</p></div>
-        <div class="case-footer"><div>${project.tech.map(item => `<span>${esc(item)}</span>`).join("")}</div><p>${project.skills.map(esc).join(" · ")}</p></div>
-      </div>
-    </details>`).join("");
+  const projectId = d.body.dataset.projectId;
+  if (projectId) {
+    const project = data.projects.find(item => item.id === projectId);
+    if (project) {
+      d.title = `${project.title} — Gabriele Floris`;
+      d.querySelector("#case-number").textContent = project.number;
+      d.querySelector("#case-context").textContent = project.context;
+      d.querySelector("#case-title").textContent = project.title;
+      d.querySelector("#case-role").textContent = project.role;
+      d.querySelector("#case-summary").textContent = project.summary;
+      d.querySelector("#case-start").textContent = project.startingPoint;
+      d.querySelector("#case-work").textContent = project.work;
+      d.querySelector("#case-outcome").textContent = project.outcome;
+      d.querySelector("#case-decisions").innerHTML = project.decisions.map(item => `<li>${esc(item)}</li>`).join("");
+      d.querySelector("#case-tech").innerHTML = project.tech.map(item => `<span>${esc(item)}</span>`).join("");
+      const current = data.projects.indexOf(project);
+      const next = data.projects[(current + 1) % data.projects.length];
+      const nextLink = d.querySelector("#next-project");
+      nextLink.href = `progetto-${next.id}.html`;
+      nextLink.querySelector("strong").textContent = next.title;
+    }
+  }
 
-  d.querySelectorAll(".case").forEach(item => item.addEventListener("toggle", () => {
-    if (!item.open) return;
-    d.querySelectorAll(".case[open]").forEach(other => { if (other !== item) other.removeAttribute("open"); });
-  }));
-
-  d.querySelector("#timeline").innerHTML = c.experience.map((item, index) => `
-    <article>
-      <span class="timeline-index">0${index + 1}</span>
-      <time>${esc(item.date)}</time>
-      <div><small>${esc(item.company)}</small><h3>${esc(item.role)}</h3><p>${esc(item.text)}</p></div>
-    </article>`).join("");
-
-  d.querySelector("#skills-grid").innerHTML = Object.entries(c.skills).map(([title, items], index) => `
-    <article><span>0${index + 1}</span><h3>${esc(title)}</h3><ul>${items.map(item => `<li>${esc(item)}</li>`).join("")}</ul></article>`).join("");
-
-  d.querySelector("#certs").innerHTML = c.certifications.map((item, index) => `
-    <article><span>SF / 0${index + 1}</span><div><small>Salesforce certification</small><h3>${esc(item)}</h3></div></article>`).join("");
-
-  const email = d.querySelector("#email-link");
-  email.href = "mailto:" + c.person.email;
-  email.innerHTML = `${esc(c.person.email)} <span>↗</span>`;
-  d.querySelector("#contact-links").innerHTML = externalLink("LinkedIn", c.person.linkedin) + `<a href="${esc(c.person.cv)}" download>Download CV <span>↓</span></a>`;
-  d.querySelector("#year").textContent = new Date().getFullYear();
-
-  const menuButton = d.querySelector(".menu-toggle");
-  const nav = d.querySelector("#nav");
-  menuButton.addEventListener("click", () => {
-    const open = menuButton.getAttribute("aria-expanded") === "true";
-    menuButton.setAttribute("aria-expanded", String(!open));
-    nav.classList.toggle("open", !open);
+  const activePage = d.body.dataset.page;
+  d.querySelectorAll("[data-nav]").forEach(link => {
+    if (link.dataset.nav === activePage) link.setAttribute("aria-current", "page");
   });
-  nav.addEventListener("click", () => { nav.classList.remove("open"); menuButton.setAttribute("aria-expanded", "false"); });
 
-  const themeButton = d.querySelector(".theme-toggle");
-  const savedTheme = localStorage.getItem("theme");
-  if (savedTheme) d.documentElement.dataset.theme = savedTheme;
-  themeButton.addEventListener("click", () => {
-    const next = d.documentElement.dataset.theme === "dark" ? "light" : "dark";
-    d.documentElement.dataset.theme = next;
-    localStorage.setItem("theme", next);
-    d.querySelector('meta[name="theme-color"]').content = next === "dark" ? "#101319" : "#f2f0e9";
-  });
+  const menu = d.querySelector(".menu-button");
+  const nav = d.querySelector(".site-nav");
+  if (menu && nav) {
+    menu.addEventListener("click", () => {
+      const open = menu.getAttribute("aria-expanded") === "true";
+      menu.setAttribute("aria-expanded", String(!open));
+      nav.classList.toggle("is-open", !open);
+    });
+  }
+
+  d.querySelectorAll("[data-year]").forEach(item => item.textContent = new Date().getFullYear());
 })();

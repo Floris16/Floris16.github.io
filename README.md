@@ -1,11 +1,14 @@
 # Portfolio — Gabriele Floris
 
-Portfolio professionale one-page, statico e senza dipendenze obbligatorie. Racconta approccio, casi reali anonimizzati, esperienza e competenze con un focus su solution design, Salesforce e delivery.
+Portfolio professionale multipagina, statico e senza dipendenze obbligatorie. Racconta percorso, metodo e progetti con un focus su solution design, Salesforce e delivery.
 
 ## Struttura
 
 ```text
-index.html                 Pagina, metadati SEO e JSON-LD
+index.html                 Home sintetica
+profilo.html               Percorso, metodo e competenze
+progetti.html              Indice dei progetti
+progetto-*.html            Pagine dei singoli casi
 assets/css/style.css       Layout, temi e responsive
 assets/js/content.js       Tutti i contenuti modificabili
 assets/js/main.js          Rendering e interazioni
@@ -19,7 +22,7 @@ Il sito funziona aprendo direttamente `index.html`. Per una preview equivalente 
 
 ## Modificare i contenuti
 
-Quasi tutti i contenuti variabili sono in `assets/js/content.js`: profilo, link, casi, tecnologie, esperienza, competenze e certificazioni. Ogni caso ha `clientName` e `showClientName`: lasciare `false` per mostrare il settore anonimo.
+I contenuti variabili sono in `assets/js/content.js`: profilo, link, casi, tecnologie, esperienza, competenze e certificazioni. I casi utilizzano descrizioni di contesto senza includere informazioni riservate.
 
 Aggiornare in `index.html` title, description, canonical, Open Graph e JSON-LD se cambiano dominio o profili. Sostituire `assets/images/og-image.svg` con un’immagine social 1200×630 se desiderato.
 
@@ -57,7 +60,7 @@ Inserire il dominio in **Settings → Pages → Custom domain**, configurare i r
 
 - [ ] Link, e-mail, canonical, Open Graph e JSON-LD aggiornati
 - [ ] CV presente e scaricabile
-- [ ] Nomi cliente autorizzati; `showClientName: false` negli altri casi
+- [ ] Descrizioni dei progetti prive di dati riservati o identificativi
 - [ ] Test da tastiera: menu, link, cambio tema, dialog e tasto Escape
 - [ ] Controllo a 320 px, tablet e desktop
 - [ ] Revisione dei testi e dei contributi personali da parte di Gabriele

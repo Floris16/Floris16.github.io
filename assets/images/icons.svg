@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+  <symbol id="route" viewBox="0 0 24 24"><path d="M5 19c5 0 4-14 10-14 2.5 0 4 1.5 4 4 0 4-5 4-7 4"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="9" r="2"/></symbol>
+  <symbol id="layers" viewBox="0 0 24 24"><path d="m4 8 8-4 8 4-8 4-8-4Z"/><path d="m4 12 8 4 8-4M4 16l8 4 8-4"/></symbol>
+  <symbol id="nodes" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2"/><circle cx="18" cy="6" r="2"/><circle cx="12" cy="18" r="2"/><path d="m8 7 3 9m5-9-3 9M8 6h8"/></symbol>
+  <symbol id="flow" viewBox="0 0 24 24"><rect x="3" y="3" width="6" height="5" rx="2"/><rect x="15" y="16" width="6" height="5" rx="2"/><path d="M9 5.5h4a4 4 0 0 1 4 4V16M15 18.5h-4a4 4 0 0 1-4-4V8"/></symbol>
+  <symbol id="code" viewBox="0 0 24 24"><path d="m8 7-5 5 5 5m8-10 5 5-5 5m-2-13-4 16"/></symbol>
+  <symbol id="flag" viewBox="0 0 24 24"><path d="M5 21V4m0 1c5-3 7 3 14 0v9c-7 3-9-3-14 0"/></symbol>
+</svg>
