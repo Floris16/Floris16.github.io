@@ -1,19 +1,82 @@
-(function(){
-  "use strict"; const d=document, c=window.PORTFOLIO, esc=s=>String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
-  d.querySelector("#hero-copy").textContent=c.person.hero; d.querySelector("#profile-copy").textContent=c.person.profile;
-  const link=(label,url)=>`<a href="${esc(url)}" ${url.startsWith("http")?'target="_blank" rel="noreferrer"':''}>${esc(label)} ↗</a>`;
-  d.querySelector("#hero-links").innerHTML=link("LinkedIn",c.person.linkedin)+link("E-mail","mailto:"+c.person.email);
-  d.querySelectorAll(".cv-link").forEach(a=>a.href=c.person.cv);
-  d.querySelector("#method-grid").innerHTML=c.method.map(x=>`<article><span>${x[0]}</span><h3>${x[1]}</h3><p>${x[2]}</p></article>`).join("");
-  d.querySelector("#projects-list").innerHTML=c.cases.map((p,i)=>`<article class="project-card"><div class="project-num">0${i+1}</div><div><div class="project-meta">${esc(p.showClientName&&p.clientName?p.clientName:p.sector)} · ${esc(p.role)}</div><h3>${esc(p.title)}</h3><p>${esc(p.intro)}</p><div class="tags">${p.tech.slice(0,6).map(t=>`<span>${esc(t)}</span>`).join("")}</div></div><button class="case-open" data-case="${esc(p.id)}" aria-label="Apri il caso ${esc(p.title)}">Approfondisci <span>↗</span></button></article>`).join("");
-  d.querySelector("#timeline").innerHTML=c.experience.map(x=>`<article><time>${esc(x.date)}</time><div><h3>${esc(x.role)}</h3><strong>${esc(x.company)}</strong><p>${esc(x.text)}</p></div></article>`).join("");
-  d.querySelector("#skills-grid").innerHTML=Object.entries(c.skills).map(([k,v])=>`<article><h3>${esc(k)}</h3><ul>${v.map(s=>`<li>${esc(s)}</li>`).join("")}</ul></article>`).join("");
-  d.querySelector("#certs").innerHTML=c.certifications.map((x,i)=>`<article><span>0${i+1}</span><div><small>Salesforce certification</small><h3>${esc(x)}</h3></div></article>`).join("");
-  const email=d.querySelector("#email-link"); email.href="mailto:"+c.person.email; email.textContent=c.person.email+" ↗";
-  d.querySelector("#contact-links").innerHTML=link("LinkedIn",c.person.linkedin)+`<a href="${esc(c.person.cv)}" download>Download CV ↓</a><span>Reggio Emilia, Italia</span>`; d.querySelector("#year").textContent=new Date().getFullYear();
-  const dialog=d.querySelector("#case-dialog"), body=d.querySelector("#dialog-content");
-  d.addEventListener("click",e=>{const b=e.target.closest(".case-open"); if(!b)return; const p=c.cases.find(x=>x.id===b.dataset.case); body.innerHTML=`<div class="dialog-meta">${esc(p.showClientName&&p.clientName?p.clientName:p.sector)} · ${esc(p.role)}</div><h2 id="dialog-title">${esc(p.title)}</h2><div class="dialog-grid"><section><h3>La sfida</h3><p>${esc(p.challenge)}</p></section><section><h3>Il mio contributo</h3><p>${esc(p.contribution)}</p></section><section><h3>La soluzione</h3><p>${esc(p.solution)}</p></section><section><h3>Le decisioni</h3><ul>${p.decisions.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></section><section class="result"><h3>Il risultato</h3><p>${esc(p.result)}</p></section></div><div class="tags">${p.tech.map(t=>`<span>${esc(t)}</span>`).join("")}</div><div class="skills-line">Competenze: ${p.skills.map(esc).join(" · ")}</div>`; dialog.showModal();});
-  d.querySelector(".dialog-close").onclick=()=>dialog.close(); dialog.addEventListener("click",e=>{if(e.target===dialog)dialog.close()});
-  const menu=d.querySelector(".menu-toggle"), nav=d.querySelector("#nav"); menu.onclick=()=>{const open=menu.getAttribute("aria-expanded")==="true"; menu.setAttribute("aria-expanded",String(!open));nav.classList.toggle("open",!open)}; nav.addEventListener("click",()=>{nav.classList.remove("open");menu.setAttribute("aria-expanded","false")});
-  const theme=d.querySelector(".theme-toggle"), saved=localStorage.getItem("theme"); if(saved)d.documentElement.dataset.theme=saved; theme.onclick=()=>{const n=d.documentElement.dataset.theme==="dark"?"light":"dark";d.documentElement.dataset.theme=n;localStorage.setItem("theme",n)};
+(function () {
+  "use strict";
+  const d = document;
+  const c = window.PORTFOLIO;
+  const esc = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
+  const externalLink = (label, url) => `<a href="${esc(url)}" ${url.startsWith("http") ? 'target="_blank" rel="noreferrer"' : ""}>${esc(label)} <span>↗</span></a>`;
+
+  d.querySelector("#hero-copy").textContent = c.person.hero;
+  d.querySelector("#profile-copy").textContent = c.person.profile;
+  d.querySelector("#hero-links").innerHTML = externalLink("LinkedIn", c.person.linkedin) + externalLink("E-mail", "mailto:" + c.person.email);
+  d.querySelectorAll(".cv-link").forEach(link => link.href = c.person.cv);
+
+  d.querySelector("#method-grid").innerHTML = c.method.map(item => `
+    <article>
+      <span class="method-number">${esc(item[0])}</span>
+      <div><h3>${esc(item[1])}</h3><p>${esc(item[2])}</p></div>
+    </article>`).join("");
+
+  d.querySelector("#projects-list").innerHTML = c.cases.map((project, index) => `
+    <details class="case" ${index === 0 ? "open" : ""}>
+      <summary>
+        <span class="case-number">0${index + 1}</span>
+        <span class="case-title"><small>${esc(project.sector)}</small><strong>${esc(project.title)}</strong></span>
+        <span class="case-role">${esc(project.role)}</span>
+        <span class="case-icon" aria-hidden="true"></span>
+      </summary>
+      <div class="case-body">
+        <p class="case-lead">${esc(project.intro)}</p>
+        <div class="case-columns">
+          <section><h4>La sfida</h4><p>${esc(project.challenge)}</p></section>
+          <section><h4>Il mio contributo</h4><p>${esc(project.contribution)}</p></section>
+          <section><h4>La soluzione</h4><p>${esc(project.solution)}</p></section>
+          <section><h4>Decisioni chiave</h4><ul>${project.decisions.map(item => `<li>${esc(item)}</li>`).join("")}</ul></section>
+        </div>
+        <div class="case-result"><span>Risultato</span><p>${esc(project.result)}</p></div>
+        <div class="case-footer"><div>${project.tech.map(item => `<span>${esc(item)}</span>`).join("")}</div><p>${project.skills.map(esc).join(" · ")}</p></div>
+      </div>
+    </details>`).join("");
+
+  d.querySelectorAll(".case").forEach(item => item.addEventListener("toggle", () => {
+    if (!item.open) return;
+    d.querySelectorAll(".case[open]").forEach(other => { if (other !== item) other.removeAttribute("open"); });
+  }));
+
+  d.querySelector("#timeline").innerHTML = c.experience.map((item, index) => `
+    <article>
+      <span class="timeline-index">0${index + 1}</span>
+      <time>${esc(item.date)}</time>
+      <div><small>${esc(item.company)}</small><h3>${esc(item.role)}</h3><p>${esc(item.text)}</p></div>
+    </article>`).join("");
+
+  d.querySelector("#skills-grid").innerHTML = Object.entries(c.skills).map(([title, items], index) => `
+    <article><span>0${index + 1}</span><h3>${esc(title)}</h3><ul>${items.map(item => `<li>${esc(item)}</li>`).join("")}</ul></article>`).join("");
+
+  d.querySelector("#certs").innerHTML = c.certifications.map((item, index) => `
+    <article><span>SF / 0${index + 1}</span><div><small>Salesforce certification</small><h3>${esc(item)}</h3></div></article>`).join("");
+
+  const email = d.querySelector("#email-link");
+  email.href = "mailto:" + c.person.email;
+  email.innerHTML = `${esc(c.person.email)} <span>↗</span>`;
+  d.querySelector("#contact-links").innerHTML = externalLink("LinkedIn", c.person.linkedin) + `<a href="${esc(c.person.cv)}" download>Download CV <span>↓</span></a>`;
+  d.querySelector("#year").textContent = new Date().getFullYear();
+
+  const menuButton = d.querySelector(".menu-toggle");
+  const nav = d.querySelector("#nav");
+  menuButton.addEventListener("click", () => {
+    const open = menuButton.getAttribute("aria-expanded") === "true";
+    menuButton.setAttribute("aria-expanded", String(!open));
+    nav.classList.toggle("open", !open);
+  });
+  nav.addEventListener("click", () => { nav.classList.remove("open"); menuButton.setAttribute("aria-expanded", "false"); });
+
+  const themeButton = d.querySelector(".theme-toggle");
+  const savedTheme = localStorage.getItem("theme");
+  if (savedTheme) d.documentElement.dataset.theme = savedTheme;
+  themeButton.addEventListener("click", () => {
+    const next = d.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    d.documentElement.dataset.theme = next;
+    localStorage.setItem("theme", next);
+    d.querySelector('meta[name="theme-color"]').content = next === "dark" ? "#101319" : "#f2f0e9";
+  });
 })();
