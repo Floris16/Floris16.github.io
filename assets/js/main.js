@@ -56,7 +56,7 @@
     themeButton.setAttribute("aria-label", dark ? "Attiva modalità giorno" : "Attiva modalità notte");
     themeButton.querySelector("span").textContent = dark ? "☀" : "☾";
     const meta = d.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = dark ? "#121316" : "#f5f5f1";
+    if (meta) meta.content = dark ? "#070b14" : "#eef1f6";
   }
   updateThemeControl();
   if (themeButton) themeButton.addEventListener("click", () => {
