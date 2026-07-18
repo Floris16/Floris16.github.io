@@ -7,7 +7,7 @@
 
   function projectCard(project) {
     return `<a class="project-card" href="progetto-${esc(project.id)}.html">
-      <div class="project-card-top"><span>${esc(project.number)}</span>${icon(project.icon)}</div>
+      <div class="project-card-top"><span>P${esc(project.number)}</span>${icon(project.icon)}</div>
       <p class="project-context">${esc(project.context)}</p>
       <h3>${esc(project.title)}</h3>
       <p class="project-summary">${esc(project.summary)}</p>
@@ -46,6 +46,24 @@
   const activePage = d.body.dataset.page;
   d.querySelectorAll("[data-nav]").forEach(link => {
     if (link.dataset.nav === activePage) link.setAttribute("aria-current", "page");
+  });
+
+  const themeButton = d.querySelector(".theme-button");
+  function updateThemeControl() {
+    if (!themeButton) return;
+    const dark = d.documentElement.dataset.theme === "dark";
+    themeButton.setAttribute("aria-pressed", String(dark));
+    themeButton.setAttribute("aria-label", dark ? "Attiva modalità giorno" : "Attiva modalità notte");
+    themeButton.querySelector("span").textContent = dark ? "☀" : "☾";
+    const meta = d.querySelector('meta[name="theme-color"]');
+    if (meta) meta.content = dark ? "#121316" : "#f5f5f1";
+  }
+  updateThemeControl();
+  if (themeButton) themeButton.addEventListener("click", () => {
+    const next = d.documentElement.dataset.theme === "dark" ? "light" : "dark";
+    d.documentElement.dataset.theme = next;
+    try { localStorage.setItem("theme", next); } catch (_) {}
+    updateThemeControl();
   });
 
   const menu = d.querySelector(".menu-button");
