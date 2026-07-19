@@ -2,8 +2,10 @@
   "use strict";
   const d = document;
   const data = window.PORTFOLIO;
+  const assetBase = d.body.dataset.base || "";
+  const language = d.documentElement.lang === "en" ? "en" : "it";
   const esc = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-  const icon = name => `<svg aria-hidden="true"><use href="assets/images/icons.svg#${esc(name)}"></use></svg>`;
+  const icon = name => `<svg aria-hidden="true"><use href="${assetBase}assets/images/icons.svg#${esc(name)}"></use></svg>`;
 
   function projectCard(project) {
     return `<a class="project-card" href="progetto-${esc(project.id)}.html">
@@ -53,7 +55,9 @@
     if (!themeButton) return;
     const dark = d.documentElement.dataset.theme === "dark";
     themeButton.setAttribute("aria-pressed", String(dark));
-    themeButton.setAttribute("aria-label", dark ? "Attiva modalità giorno" : "Attiva modalità notte");
+    themeButton.setAttribute("aria-label", dark
+      ? (language === "en" ? "Switch to light mode" : "Attiva modalità giorno")
+      : (language === "en" ? "Switch to dark mode" : "Attiva modalità notte"));
     themeButton.querySelector("span").innerHTML = dark
       ? '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"/></svg>'
       : '<svg viewBox="0 0 24 24"><path d="M20.8 15.1A8.6 8.6 0 0 1 8.9 3.2a8.8 8.8 0 1 0 11.9 11.9Z"/></svg>';
