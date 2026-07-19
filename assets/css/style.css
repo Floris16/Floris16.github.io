@@ -62,11 +62,8 @@ button { color: inherit; font: inherit; }
 .header-cv { display: inline-flex; align-items: center; gap: .55rem; padding: .55rem .8rem; border: 1px dashed var(--line); border-radius: 12px; font-size: .75rem; font-weight: 700; }
 .header-cv:hover { border-color: var(--accent); }
 .theme-button { width: 38px; height: 38px; display: grid; flex: 0 0 auto; place-items: center; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--card); cursor: pointer; }
-.theme-button span { position: relative; width: 18px; height: 18px; display: block; font-size: 0; transition: transform .25s ease; }
-.theme-button span::before { content: ""; position: absolute; inset: 0; border-radius: 50%; box-shadow: inset -6px -2px 0 0 currentColor; transform: rotate(-18deg); }
-.theme-button span::after { content: ""; position: absolute; top: 1px; right: 0; width: 2px; height: 2px; border-radius: 50%; background: currentColor; box-shadow: 3px 4px 0 -1px currentColor; }
-[data-theme="dark"] .theme-button span::before { inset: 5px; background: currentColor; box-shadow: 0 -8px 0 -3px currentColor, 0 8px 0 -3px currentColor, 8px 0 0 -3px currentColor, -8px 0 0 -3px currentColor, 6px 6px 0 -3px currentColor, -6px -6px 0 -3px currentColor, 6px -6px 0 -3px currentColor, -6px 6px 0 -3px currentColor; transform: none; }
-[data-theme="dark"] .theme-button span::after { display: none; }
+.theme-button span { width: 18px; height: 18px; display: block; font-size: 0; transition: transform .25s ease; }
+.theme-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
 .theme-button:hover span { transform: scale(1.08); }
 .theme-button[aria-pressed="true"] { color: var(--accent); }
 .menu-button { display: none; padding: .55rem .75rem; border: 1px solid var(--line); border-radius: 10px; background: var(--card); cursor: pointer; }
