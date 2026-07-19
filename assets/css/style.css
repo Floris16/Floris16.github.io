@@ -40,6 +40,7 @@ body { margin: 0; color: var(--ink); background: var(--bg); font: 400 16px/1.6 v
 body::before { content: ""; position: fixed; z-index: -1; inset: 0; opacity: .3; background-image: radial-gradient(var(--line) .7px, transparent .7px); background-size: 24px 24px; pointer-events: none; }
 a { color: inherit; text-decoration: none; }
 img, svg { display: block; }
+.inline-icon { width: 1em; height: 1em; display: inline-block; flex: 0 0 auto; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.12em; }
 button { color: inherit; font: inherit; }
 ::selection { color: white; background: var(--accent); }
 .skip-link { position: fixed; z-index: 99; top: -5rem; left: 1rem; padding: .7rem 1rem; color: white; background: var(--accent); border-radius: 10px; }
@@ -81,8 +82,8 @@ h2 { font-size: clamp(2rem, 4vw, 3.5rem); }
 h3 { font-size: 1.2rem; }
 .lead { max-width: 720px; color: var(--muted); font-size: clamp(1.05rem, 1.8vw, 1.3rem); }
 .text-link { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 750; }
-.text-link span { color: var(--accent); transition: transform .2s ease; }
-.text-link:hover span { transform: translate(3px, -3px); }
+.text-link .inline-icon { color: var(--accent); transition: transform .2s ease; }
+.text-link:hover .inline-icon { transform: translate(3px, -3px); }
 
 .home-hero { padding-top: clamp(3rem, 6vw, 5rem); }
 .hero-grid { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(320px, .7fr); gap: clamp(2rem, 7vw, 6rem); align-items: center; }
@@ -128,7 +129,8 @@ h3 { font-size: 1.2rem; }
 .project-summary { max-width: 500px; margin: 0; color: var(--muted); font-size: .88rem; }
 .project-card-foot { display: flex; align-items: end; justify-content: space-between; gap: 1rem; margin-top: auto; padding-top: 2rem; font-size: .7rem; }
 .project-card-foot span { max-width: 230px; color: var(--muted); }
-.project-card-foot b { color: var(--accent); font-size: 1.2rem; }
+.project-card-foot .link-icon { color: var(--accent); }
+.project-card-foot .link-icon svg { width: 1.15rem; height: 1.15rem; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
 .path-row { display: grid; grid-template-columns: 120px 1fr; gap: 2rem; padding: 1.4rem 0; border-top: 1px dashed var(--line); }
 .path-row:last-child { border-bottom: 1px dashed var(--line); }
@@ -172,7 +174,7 @@ h3 { font-size: 1.2rem; }
 .cert-item strong { max-width: 260px; line-height: 1.25; }
 
 .project-page { padding-top: clamp(3rem, 7vw, 6rem); }
-.back-link { display: inline-flex; gap: .45rem; margin-bottom: 3rem; color: var(--muted); font-size: .75rem; }
+.back-link { display: inline-flex; align-items: center; gap: .45rem; margin-bottom: 3rem; color: var(--muted); font-size: .75rem; }
 .case-hero { display: grid; grid-template-columns: 80px 1fr; gap: 1.5rem; }
 .case-number { padding-top: .5rem; color: var(--accent); font-size: .75rem; font-weight: 750; }
 .case-context { color: var(--accent); font-size: .7rem; font-weight: 750; letter-spacing: .06em; text-transform: uppercase; }
@@ -194,7 +196,7 @@ h3 { font-size: 1.2rem; }
 .next-project { display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: end; padding: 1.5rem; border: 1px solid var(--line); border-radius: var(--radius); background: var(--card); }
 .next-project span { color: var(--muted); font-size: .7rem; }
 .next-project strong { display: block; margin-top: .4rem; font-size: 1.35rem; }
-.next-project b { color: var(--accent); font-size: 1.5rem; }
+.next-project > .inline-icon { width: 1.35rem; height: 1.35rem; color: var(--accent); }
 
 .cv-page { padding-top: clamp(2.5rem, 5vw, 4.5rem); }
 .cv-intro { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2rem; align-items: end; margin-bottom: 2rem; }

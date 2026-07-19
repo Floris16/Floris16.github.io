@@ -5,7 +5,7 @@
   const assetBase = d.body.dataset.base || "";
   const language = d.documentElement.lang === "en" ? "en" : "it";
   const esc = value => String(value).replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
-  const icon = name => `<svg aria-hidden="true"><use href="${assetBase}assets/images/icons.svg#${esc(name)}"></use></svg>`;
+  const icon = name => `<svg aria-hidden="true"><use href="${assetBase}assets/images/icons.svg?v=20260719-2#${esc(name)}"></use></svg>`;
 
   function projectCard(project) {
     return `<a class="project-card" href="progetto-${esc(project.id)}.html">
@@ -13,7 +13,7 @@
       <p class="project-context">${esc(project.context)}</p>
       <h3>${esc(project.title)}</h3>
       <p class="project-summary">${esc(project.summary)}</p>
-      <div class="project-card-foot"><span>${esc(project.role)}</span><b aria-hidden="true">↗</b></div>
+      <div class="project-card-foot"><span>${esc(project.role)}</span><span class="link-icon" aria-hidden="true">${icon("external")}</span></div>
     </a>`;
   }
 
