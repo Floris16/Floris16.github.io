@@ -7,7 +7,7 @@
 
   function projectCard(project) {
     return `<a class="project-card" href="progetto-${esc(project.id)}.html">
-      <div class="project-card-top"><span>P${esc(project.number)}</span>${icon(project.icon)}</div>
+      <div class="project-card-top"><span>P${esc(String(project.number).replace(/^0/, ""))}</span>${icon(project.icon)}</div>
       <p class="project-context">${esc(project.context)}</p>
       <h3>${esc(project.title)}</h3>
       <p class="project-summary">${esc(project.summary)}</p>
@@ -16,7 +16,7 @@
   }
 
   const homeProjects = d.querySelector("#home-projects");
-  if (homeProjects) homeProjects.innerHTML = data.projects.slice(0, 3).map(projectCard).join("");
+  if (homeProjects) homeProjects.innerHTML = data.projects.map(projectCard).join("");
   const projectGrid = d.querySelector("#project-grid");
   if (projectGrid) projectGrid.innerHTML = data.projects.map(projectCard).join("");
 
