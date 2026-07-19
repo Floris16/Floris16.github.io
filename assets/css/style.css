@@ -95,14 +95,14 @@ h3 { font-size: 1.2rem; }
 .hero-copy { max-width: 680px; color: var(--muted); font-size: 1.15rem; }
 .hero-links { display: flex; flex-wrap: wrap; gap: 1.2rem; margin-top: 2rem; }
 .portrait-card { position: relative; margin: 0; padding: .6rem; background: var(--card); border: 1px solid var(--line); border-radius: 28px 28px 8px 28px; box-shadow: 0 18px 50px rgba(30,31,35,.1); }
-.portrait-card::before { content: ""; position: absolute; z-index: 4; top: -6px; right: 20px; width: 88px; height: 12px; border: 2px solid var(--card); border-radius: 999px; background: repeating-linear-gradient(90deg, var(--curb-red) 0 12px, var(--curb-white) 12px 24px); pointer-events: none; }
+.portrait-card::before { content: ""; position: absolute; z-index: 4; top: -9px; right: 20px; width: 104px; height: 18px; border: 2px solid var(--card); border-radius: 5px 5px 2px 2px; background: linear-gradient(90deg, var(--accent), var(--sector-two)) bottom / 100% 5px no-repeat, repeating-linear-gradient(90deg, var(--curb-red) 0 13px, var(--curb-white) 13px 26px) top / 100% 11px no-repeat; box-shadow: 0 3px 7px rgba(7, 13, 25, .16); pointer-events: none; }
 .portrait-card::after { content: none; }
 .portrait-card img { width: 100%; height: clamp(330px, 34vw, 440px); object-fit: cover; object-position: center 47%; border-radius: 21px 21px 5px 21px; filter: saturate(.9) contrast(1.03); }
 .portrait-card figcaption { display: flex; justify-content: space-between; padding: .75rem .45rem .2rem; color: var(--muted); font-size: .66rem; }
 .quick-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: clamp(3rem, 7vw, 6rem); }
 .quick-grid::before { content: ""; position: absolute; top: 50%; right: 2rem; left: 2rem; height: 5px; border-radius: 999px; background: var(--ink); opacity: .9; }
 .quick-item { position: relative; z-index: 1; padding: 1rem; border: 1px dashed var(--line); border-radius: 18px 18px 5px 18px; background: color-mix(in srgb, var(--card) 92%, transparent); }
-.quick-item::before { content: ""; position: absolute; z-index: 2; top: -5px; right: 14px; width: 62px; height: 10px; border: 2px solid var(--card); border-radius: 999px; background: repeating-linear-gradient(90deg, var(--curb-red) 0 9px, var(--curb-white) 9px 18px); pointer-events: none; }
+.quick-item::before { content: ""; position: absolute; z-index: 2; top: -7px; right: 14px; width: 74px; height: 14px; border: 2px solid var(--card); border-radius: 4px 4px 2px 2px; background: linear-gradient(90deg, var(--accent), var(--sector-two)) bottom / 100% 4px no-repeat, repeating-linear-gradient(90deg, var(--curb-red) 0 10px, var(--curb-white) 10px 20px) top / 100% 8px no-repeat; box-shadow: 0 2px 5px rgba(7, 13, 25, .14); pointer-events: none; }
 .quick-item small { display: block; color: var(--accent); font-weight: 750; }
 .quick-item span { display: block; margin-top: .25rem; color: var(--muted); font-size: .75rem; }
 
@@ -116,7 +116,7 @@ h3 { font-size: 1.2rem; }
 .project-grid::after { content: "STARTING GRID"; position: absolute; right: 1.25rem; bottom: .65rem; color: var(--muted); font-size: .58rem; font-weight: 750; letter-spacing: .16em; }
 .project-card { position: relative; min-height: 390px; padding: 1.4rem; display: flex; flex-direction: column; overflow: hidden; border: 1px solid var(--line); border-radius: var(--radius) var(--radius) 6px var(--radius); background: var(--card); transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
 .project-card:nth-child(even) { transform: translateY(2.75rem); }
-.project-card::before { content: ""; position: absolute; z-index: 2; top: -6px; right: 18px; width: 82px; height: 12px; border: 2px solid var(--card); border-radius: 999px; background: repeating-linear-gradient(90deg, var(--curb-red) 0 11px, var(--curb-white) 11px 22px); pointer-events: none; }
+.project-card::before { content: ""; position: absolute; z-index: 2; top: -8px; right: 18px; width: 96px; height: 16px; border: 2px solid var(--card); border-radius: 5px 5px 2px 2px; background: linear-gradient(90deg, var(--accent), var(--sector-two)) bottom / 100% 4px no-repeat, repeating-linear-gradient(90deg, var(--curb-red) 0 12px, var(--curb-white) 12px 24px) top / 100% 10px no-repeat; box-shadow: 0 3px 6px rgba(7, 13, 25, .15); pointer-events: none; }
 .project-card::after { content: ""; position: absolute; right: -35px; bottom: -35px; width: 100px; height: 100px; border: 1px dashed var(--line); border-radius: 50%; }
 .project-card:hover { z-index: 1; border-color: color-mix(in srgb, var(--accent) 55%, var(--line)); box-shadow: 0 18px 45px rgba(30,31,35,.08); transform: translateY(-4px); }
 .project-card:nth-child(even):hover { transform: translateY(calc(2.75rem - 4px)); }
