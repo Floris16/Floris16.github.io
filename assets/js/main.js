@@ -54,7 +54,7 @@
     const dark = d.documentElement.dataset.theme === "dark";
     themeButton.setAttribute("aria-pressed", String(dark));
     themeButton.setAttribute("aria-label", dark ? "Attiva modalità giorno" : "Attiva modalità notte");
-    themeButton.querySelector("span").textContent = dark ? "☀" : "☾";
+    themeButton.querySelector("span").textContent = "";
     const meta = d.querySelector('meta[name="theme-color"]');
     if (meta) meta.content = dark ? "#070b14" : "#eef1f6";
   }
