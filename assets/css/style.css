@@ -91,9 +91,7 @@ h3 { font-size: 1.2rem; }
 .quick-grid { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: .8rem; margin-top: clamp(3rem, 7vw, 6rem); }
 .quick-grid::before { content: ""; position: absolute; top: 50%; right: 2rem; left: 2rem; height: 5px; border-radius: 999px; background: var(--ink); opacity: .9; }
 .quick-item { position: relative; z-index: 1; padding: 1rem; border: 1px dashed var(--line); border-radius: 18px 18px 5px 18px; background: color-mix(in srgb, var(--card) 92%, transparent); }
-.quick-item::before { content: ""; position: absolute; top: -4px; left: 18px; width: 46px; height: 7px; border-radius: 4px; background: repeating-linear-gradient(135deg, var(--curb-red) 0 7px, var(--curb-white) 7px 14px); transform: skewX(-18deg); }
-.quick-item:nth-child(2)::before { --curb-red: var(--sector-two); }
-.quick-item:nth-child(3)::before { --curb-red: var(--sector-three); }
+.quick-item::before { content: ""; position: absolute; z-index: 2; top: -1px; right: -1px; width: 54px; height: 54px; border-radius: 0 18px 0 0; background: repeating-linear-gradient(135deg, var(--curb-red) 0 7px, var(--curb-white) 7px 14px) top right / 46px 7px no-repeat, repeating-linear-gradient(45deg, var(--curb-red) 0 7px, var(--curb-white) 7px 14px) top right / 7px 46px no-repeat; pointer-events: none; }
 .quick-item small { display: block; color: var(--accent); font-weight: 750; }
 .quick-item span { display: block; margin-top: .25rem; color: var(--muted); font-size: .75rem; }
 
